@@ -15,6 +15,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class HomeWork {
 
+    StartPage startPage = new StartPage();
+
     @BeforeAll
     static void beforeAll() {
         Configuration.startMaximized = true;
@@ -51,6 +53,14 @@ public class HomeWork {
         $("input[name = 'ctl00$ctl00$cphMain$cphServiceMain$textNum']").setValue(testData);
         $("input[type='submit']").click();
         $("#lblOp").shouldHave(Condition.text(expected));
+    }
+
+    @MethodSource("commonSearchTestCsvSource")
+    @ParameterizedTest(name = "Тест проверят работу сервиса по определеню оператора по номеру телефона с данными: {0}")
+    void numberTest3(String testData, String expected) {
+
+        startPage.openPage().setTelefonNumber(testData).startCheck().assetOperator(expected);
+
     }
 
 
