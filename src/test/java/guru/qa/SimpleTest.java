@@ -20,4 +20,10 @@ public class SimpleTest {
     void test1() {
         Assertions.assertTrue(3 > 2);
     }
+
+    @Test
+    @DisplayName("Тест проверяет, что 3 > 2")
+    void test2() {
+        Assertions.assertTrue(3 > 2);
+    }
 }
